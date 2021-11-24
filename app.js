@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const bodyParser = express.bodyParser();
 const mqtt = require('mqtt');
 const http = require('http');
 const mongoose = require('mongoose');
@@ -11,8 +10,8 @@ const devicesRouter = require('./routes/devices');
 require('dotenv/config');
 
 app.use(express.static(__dirname + '/public'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use('/devices', devicesRouter);
 
 const client = mqtt.connect('mqtt://192.168.219.116');
@@ -21,7 +20,7 @@ client.on('connect', () => {
   client.subscribe('dht11');
 });
 
-client.on('message', async (req, res) => {
+client.on('message', async (topic, message) => {
   const obj = JSON.parse(message);
   const date = new Date();
   const year = date.getFullYear();

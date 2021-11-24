@@ -33,7 +33,7 @@
         if (value == '1') var value = 'on';
         else if (value == '2') var value = 'off';
         $.ajax({
-          url: 'http://112.146.21.61:3000/devices/led',
+          url: 'http://192.168.219.116:3000/devices/led',
           type: 'post',
           data: { flag: value },
           success: ledStatus,

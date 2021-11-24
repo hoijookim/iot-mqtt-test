@@ -4,7 +4,7 @@ const mqtt = require('mqtt');
 const DHT11 = require('../models/DHT11');
 
 //  MQTT  Server  접속
-const client = mqtt.connect('mqtt://112.146.21.61');
+const client = mqtt.connect('mqtt://192.168.219.116');
 //웹에서  rest-full  요청받는  부분(POST)
 router.post('/led', function (req, res, next) {
   res.set('Content-Type', 'text/json');
